@@ -1,0 +1,44 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
+//pre: Dios que sueño no aguanto más
+//post: Tengo que leer mejor el enunciado pq vamos
+bool repetido (const vector<int>& v, int k, int posA) {
+    for (int i = posA + 1; i < v.size(); ++i) {
+        if (k == v[i]) return true;
+    }
+    return false;
+}
+//pre:
+//post:
+int posicion (const vector<int>& v, int k, int n) {
+    int count = 1;
+    int ultima = 0;
+    for (int i = n +1 ; i < v.size(); ++i) {
+        if (k == v[i]) ultima = count + n;
+        ++count;
+    }
+
+    return ultima;
+}
+
+int main () {
+    int n;
+    while (cin >> n) {
+    vector<int> vec (n);
+        //vec[0] = n - 1;
+        for (int i = 0; i < n; ++i) cin >> vec[i]; //carga el vector
+    int i = 0;
+    bool encontrado = false;
+        while (i < n and not encontrado) { //examina el vector buscando el primer numero repetido
+            if (repetido(vec, vec[i], i)) {
+                cout << vec [i] << ' ' << posicion(vec, vec[i], i) << endl;
+                encontrado = true; //se acaba el bucle;
+            }
+            ++i;
+        }
+        if (not encontrado) cout << "NO" << endl;
+    }    
+}
